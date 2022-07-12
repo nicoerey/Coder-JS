@@ -1,0 +1,22 @@
+* {
+    margin: 0%;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+  h1 {
+    font-size: 40px;
+    align-content: center;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  h2 {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+  }
