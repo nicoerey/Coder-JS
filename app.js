@@ -66,11 +66,11 @@ function rePreg(){                                          // funcion para re p
             }
 }
 
-function cargaHtml(){                                       // funcion que en base al valor de decision, crea un producto y lo guarda en un array
+function cargaHtml(){                                       // Escribe el prod en el html
         document.write(`Producto cargado correctamente. Nombre: ${nombre}, Precio: ${precio} <br>`) 
 }
 
-function cargaArray (){
+function cargaArray (){                                     // funcion que en base al valor de decision, crea un producto y lo guarda en un array
     
 switch (true) {
     case decision === "1":
