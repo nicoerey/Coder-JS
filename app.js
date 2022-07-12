@@ -1,65 +1,97 @@
-let c = prompt(`¿Desea calcular su prestamo bancario? 
-                Ingrese SI para continuar
-                Ingrese NO para abandonar`)
+// defino 3 arrays vacios a los cuales el ususario luego decide a cual enviar cada producto
 
-if (c === "SI" || c === "si" ) {
-    let a = " "
-    let b = " "
-    prestamo(a, b)
-}
-else if (c === "NO" || c === "no" ){
-    alert (`Gracias por usar nuestro servicio.`)
-}
-else{
-    alert (`Por favor ingrese una opcion valida`)
+const gaseosasArray = []
+const comidasArray = []
+const caramelosArray = []
+
+let decision = " "
+let nombre = " "
+let precio = 1
+
+class Producto{
+    constructor(nombre, precio){
+    this.nombre = nombre,
+    this.precio = precio}
 }
 
-function prestamo (a,b) {
-    a = Number(prompt("Elija la cantidad de dinero a pedir")) 
-    b = Number(prompt("Elija la cantidad de cuotas"))
-    
-    if (a !== String && a > 0 && b !== String && b> 0) {
-        while (a !== String && a > 0 && b !== String && b> 0) {
-            switch (true) {
-                case (b<=12):
-                    cuota = (a*1.1)/b
-                    alert(`Para un prestamo de $${a}, son ${b} cuotas de $${cuota}`)
-                    break;
-                case ((b>12) && (b <=24)):
-                    cuota2 = (a*1.5)/b
-                    alert(`Para un prestamo de ${a}, son ${b} cuotas de $${cuota2}`)
-                    break;
-                case ((b>24) && (b <=50)):
-                    cuota3 = (a*2)/b
-                    alert(`Para un prestamo de ${a}, son ${b} cuotas de $${cuota3}`)
-                case (b>=51):
-                    cuota4 = (a*2.5)/b
-                    alert(`Para un prestamo de ${a}, son ${b} cuotas de $${cuota4}`)
-                    break;
-                default: 
-                    cuota5 = (a*3)/b
-                    alert(`Para un prestamo de ${a}, son ${b} cuotas de $${cuota5}`)
-                break
+function ingresoDatos(nombre, precio){
+
+    // tengo 3 arrays por lo cual de alguna forma el usuario tiene que elegir a que va cada cosa
+    decision = prompt(`Ingrese el numero correspondiente a la categoria del producto a cargar
+                         1 - Gaseosas
+                         2 - Comida
+                         3 - Caramelos`)
+   
+    switch(decision){
+        case "1": 
+             ciclo()                                              // ejecuto funcion de ciclo for
+        break;
+        case "2":
+             ciclo()                                              // ejecuto funcion de ciclo for
+        break;
+        case "3":
+             ciclo()                                              // ejecuto funcion de ciclo for
+            break;
+        default:
+             alert("No ingresaste una categoria valida")
+        break;
+    }                     
+    rePreg()                                                      // funcion de re pregunta para saber si el usuario quiere cargar mas 
+}
+
+function ciclo(){                                                // funcion de ciclo para que pregunte x veces ingrese valor y precio
+                     
+    let cantidad = Number(prompt("¿Cuantos productos queres ingresar? Maximo 10 por vez"))
+    if (cantidad <= 10) {
+        for(i = 1; i <= cantidad; i++){
+            nombre = prompt("Ingrese el nombre del producto")
+            precio = Number(prompt("Ingrese el valor del producto"))
+            cargaArray()  
             }
-        rePreg()
-        break
-    }
     } 
     else {
-        alert (`            *Error 404*. 
-            Por favor ingrese una cantidad valida.`) 
-            rePreg() 
+        alert("Ingrese una cantidad entre 1 y 10")
     }
+    
 }
-function rePreg (x){
-    x = prompt(`Desea calcular otro prestamo? 
-                Ingrese SI para continuar
-                Ingrese NO para abandonar`)
-    if(x === "SI" || x === "si"){
-        prestamo()
-    }
-    else {
-        alert (`Gracias por usar nuestro servicio.`)
-        
-    }
+function rePreg(){                                          // funcion para re preg si quiere ingresar mas 
+    let x = prompt(`¿Desea ingresar mas productos? 
+                    Ingrese SI para continuar
+                    Ingrese NO para abandonar`)
+        if(x === "SI" || x === "si"){                       // responde si vuelve a ejecutar la funcion de 
+        ingresoDatos()
+        }
+        else {                                              // respone no - termina todo   
+                alert (`Gracias por usar nuestro servicio.`)
+            }
 }
+
+function cargaHtml(){
+    document.write(`Producto cargado correctamente. Nombre: ${nombre}, Precio: ${precio} <br>`)
+}
+
+function cargaArray (){
+    
+switch (true) {
+    case decision === "1":
+        productoGaseosa = new Producto(nombre, precio)
+        gaseosasArray.push(productoGaseosa)
+        cargaHtml()
+        break;
+    case decision === "2":
+        productoComida = new Producto(nombre, precio)
+        comidasArray.push(productoComida)
+        cargaHtml()
+        break;
+    default:
+        productoCaramelo = new Producto(nombre, precio)
+        caramelosArray.push(productoCaramelo)
+        cargaHtml()
+        break;
+}
+}
+
+ingresoDatos()
+console.log(gaseosasArray);
+console.log(comidasArray);
+console.log(caramelosArray);
